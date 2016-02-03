@@ -40,7 +40,7 @@ public class Arm extends Subsystem {
     // here. Call these from Commands.
     
     public void rotateToAngle(double angle) {
-    //TODO : FINISH THE METHOD
+    //TODO: Write rotateTAngle for arm
     }
 
     public void initDefaultCommand() {
