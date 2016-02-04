@@ -39,6 +39,7 @@ public class LowGoal extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	finished = false;
     }
     
     boolean finished = false;
