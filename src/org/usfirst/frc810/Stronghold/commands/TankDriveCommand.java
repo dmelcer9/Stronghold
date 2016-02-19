@@ -13,6 +13,7 @@ package org.usfirst.frc810.Stronghold.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc810.Stronghold.Robot;
+import org.usfirst.frc810.Stronghold.RobotMap;
 
 /**
  *
@@ -42,6 +43,9 @@ public class TankDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	Robot.drive.disablePIDRotation();
+    	
     	double left = Robot.oi.getLeftDrive().getY();
     	double right = Robot.oi.getRightDrive().getY();
     	left = normalizeInput(left);

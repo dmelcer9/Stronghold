@@ -44,12 +44,12 @@ public class IntakeBall extends Command {
     boolean finished = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.forward();
+    /*	Robot.intake.forward();
     	while(!Robot.intake.isBeamBroken()){
     		Timer.delay(.02);
     	}
     	Robot.intake.stop();
-    	finished = true;
+    	finished = true;*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
