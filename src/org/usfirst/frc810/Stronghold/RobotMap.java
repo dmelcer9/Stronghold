@@ -103,12 +103,6 @@ public class RobotMap {
         LiveWindow.addSensor("Drive", "Gyro", driveGyro);
         driveGyro.zeroYaw();
         
-        drivePID = new PIDController(.003, 0.0, 0.0, 0.0, driveGyro, Robot.drive::outputArcadeRotation, .02);
-        drivePID.setInputRange(-180, 180);
-        drivePID.setOutputRange(-1, 1);
-        drivePID.setAbsoluteTolerance(1);
-        drivePID.setContinuous(true);
-        
         armLeftCannon.changeControlMode(TalonControlMode.Speed);
     	armRightCannon.changeControlMode(TalonControlMode.Speed);
     	

@@ -41,30 +41,25 @@ public class IntakeBall extends Command {
     protected void initialize() {
     }
     
-    boolean finished = false;
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    /*	Robot.intake.forward();
-    	while(!Robot.intake.isBeamBroken()){
-    		Timer.delay(.02);
-    	}
-    	Robot.intake.stop();
-    	finished = true;*/
+    	Robot.arm.setShooterSpeed(-5000);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+        return !Robot.oi.intakeButton.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	finished = false;
+    	Robot.arm.setShooterSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	finished = false;
+    	Robot.arm.setShooterSpeed(0);
     }
 }

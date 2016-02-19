@@ -45,10 +45,16 @@ public class LowGoal extends Command {
     boolean finished = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*Robot.intake.reverse();
-    	Timer.delay(.5);
-    	Robot.intake.stop();
-    	finished = true;*/
+    	Robot.arm.setShooterSpeed(10000);
+    	Robot.arm.openStand();
+    	Timer.delay(.2);
+    	Robot.arm.rotateToAngle(-7);
+    	while(!Robot.arm.PIDOnTarget()) Timer.delay(.02);
+    	Timer.delay(.25);
+    	Robot.arm.pushBall();
+    	Timer.delay(1);
+    	Robot.arm.setShooterSpeed(0);
+    	finished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -58,12 +64,14 @@ public class LowGoal extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.arm.setShooterSpeed(0);
     	finished = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.arm.setShooterSpeed(0);
     	finished = false;
     }
 }

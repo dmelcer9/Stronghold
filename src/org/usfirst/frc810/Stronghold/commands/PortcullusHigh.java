@@ -38,6 +38,8 @@ public class PortcullusHigh extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.arm.openStand();
+    	Robot.arm.rotateToAngle(50);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,7 +48,7 @@ public class PortcullusHigh extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.arm.PIDOnTarget();
     }
 
     // Called once after isFinished returns true

@@ -57,10 +57,15 @@ public class DockArm extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	interrupted();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	if(Robot.arm.getAngle()<15) Robot.arm.manualMove(.8);
+    	Timer.delay(.25);
+    	Robot.arm.manualMove(0);
+    	Robot.arm.openStand();
     }
 }

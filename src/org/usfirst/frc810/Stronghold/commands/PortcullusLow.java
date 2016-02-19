@@ -11,8 +11,10 @@
 
 package org.usfirst.frc810.Stronghold.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc810.Stronghold.Robot;
+import org.usfirst.frc810.Stronghold.RobotMap;
 
 /**
  *
@@ -38,6 +40,16 @@ public class PortcullusLow extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(!Robot.arm.isStandOpen()){
+    		if(Robot.arm.getAngle()<15){
+    			Robot.arm.manualMove(.8);
+    			Timer.delay(.25);
+    			Robot.arm.manualMove(0);
+    			Robot.arm.openStand();
+    		}
+    	}
+    	
+    	Robot.arm.rotateToAngle(-15);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,7 +58,7 @@ public class PortcullusLow extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.arm.PIDOnTarget();
     }
 
     // Called once after isFinished returns true

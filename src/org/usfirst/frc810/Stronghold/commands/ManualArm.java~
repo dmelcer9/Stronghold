@@ -38,10 +38,15 @@ public class ManualArm extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.arm.openStand();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	double joystickVal = Robot.oi.getGamepad().getRawAxis(3)+Robot.oi.getGamepad().getRawAxis(1);
+    	joystickVal /= 2; 
+    	Robot.arm.manualMove(joystickVal);
     }
 
     // Make this return true when this Command no longer needs to run execute()
