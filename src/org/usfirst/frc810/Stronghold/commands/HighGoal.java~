@@ -11,6 +11,7 @@
 
 package org.usfirst.frc810.Stronghold.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc810.Stronghold.Robot;
 
@@ -39,22 +40,34 @@ public class HighGoal extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     }
-
+    
+    boolean finished = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.arm.setShooterSpeed(10000);
+    	Timer.delay(.5);
+    	Robot.arm.pushBall();
+    	Timer.delay(1);
+    	Robot.arm.setShooterSpeed(0);
+    	finished = true;
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return finished;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	
+    	Robot.arm.setShooterSpeed(0);
+    	Robot.arm.retractPiston();
+    	finished = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

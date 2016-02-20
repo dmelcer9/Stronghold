@@ -40,17 +40,15 @@ public class LowGoal extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
+    	
     }
     
     boolean finished = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.setShooterSpeed(10000);
-    	Robot.arm.openStand();
-    	Timer.delay(.2);
-    	Robot.arm.rotateToAngle(-7);
-    	while(!Robot.arm.PIDOnTarget()) Timer.delay(.02);
-    	Timer.delay(.25);
+    	Robot.arm.setShooterSpeed(-10000);
+    	
+    	Timer.delay(.5);
     	Robot.arm.pushBall();
     	Timer.delay(1);
     	Robot.arm.setShooterSpeed(0);
@@ -64,6 +62,7 @@ public class LowGoal extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.arm.retractPiston();
     	Robot.arm.setShooterSpeed(0);
     	finished = false;
     }

@@ -39,12 +39,14 @@ public class IntakeBall extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.arm.retractPiston();
     }
     
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.setShooterSpeed(-5000);
+    	
+    	Robot.arm.setShooterSpeed(3000);
     }
 
     // Make this return true when this Command no longer needs to run execute()
