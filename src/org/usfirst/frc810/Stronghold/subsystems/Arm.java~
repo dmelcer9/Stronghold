@@ -55,11 +55,12 @@ public class Arm extends Subsystem {
     public void stopShooter(){
     	setShooterSpeed(0);
     }
-    
+     
     
     public void pushBall(){
     	pusher.set(true);
     	Timer.delay(.25);
+    	
     	pusher.set(false);
     }
     

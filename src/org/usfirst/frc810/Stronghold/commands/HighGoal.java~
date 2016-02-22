@@ -39,17 +39,30 @@ public class HighGoal extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	startTime = System.currentTimeMillis();
     }
     
     boolean finished = false;
+    boolean ballPushed = false;
+    long startTime;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.setShooterSpeed(10000);
-    	Timer.delay(.5);
-    	Robot.arm.pushBall();
-    	Timer.delay(1);
-    	Robot.arm.setShooterSpeed(0);
-    	finished = true;
+    	long elapsedTime = System.currentTimeMillis() - startTime;
+    	if(elapsedTime < 500){
+    		Robot.arm.setShooterSpeed(10000);
+    	} else{
+    		if(!ballPushed){
+    			Robot.arm.pushBall();
+    			ballPushed = true;
+    		}
+    		if(elapsedTime < 1500){
+    			Robot.arm.setShooterSpeed(10000);
+    		} else{
+    			Robot.arm.setShooterSpeed(0);
+    			finished  = true;
+    		}
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -63,6 +76,7 @@ public class HighGoal extends Command {
     	Robot.arm.setShooterSpeed(0);
     	Robot.arm.retractPiston();
     	finished = false;
+    	ballPushed = false;
     }
 
     // Called when another command which requires one or more of the same

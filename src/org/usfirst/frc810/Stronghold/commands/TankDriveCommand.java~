@@ -46,8 +46,8 @@ public class TankDriveCommand extends Command {
     	
     	Robot.drive.disablePIDRotation();
     	
-    	double left = Robot.oi.getLeftDrive().getY();
-    	double right = Robot.oi.getRightDrive().getY();
+    	double left = -Robot.oi.getLeftTankValue();
+    	double right = -Robot.oi.getRightTankValue();
     	left = normalizeInput(left);
     	right = normalizeInput(right);
     	Robot.drive.tankDrive(left, right);
