@@ -26,4 +26,15 @@ public enum TankDriveSource {
 			return 0;
 		}
 	}
+	
+	public boolean reduceSpeed(){
+		switch(this){
+		case JOYSTICKS:
+			return Robot.oi.getRightDrive().getRawButton(1) || Robot.oi.getLeftDrive().getRawButton(1);
+		case GAMEPAD:
+			return Robot.oi.getGamepad().getRawButton(6);
+		default:
+			return false;
+		}
+	}
 }

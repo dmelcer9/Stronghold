@@ -11,6 +11,7 @@
 
 package org.usfirst.frc810.Stronghold.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc810.Stronghold.Robot;
 
@@ -38,7 +39,7 @@ public class RetractPiston extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.pusher.setPiston(false);
+    	Robot.pusher.setPiston(Value.kReverse);
     }
 
     // Called repeatedly when this Command is scheduled to run
