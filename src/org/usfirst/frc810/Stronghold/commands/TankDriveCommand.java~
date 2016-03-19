@@ -57,8 +57,8 @@ public class TankDriveCommand extends Command {
     	if(Math.abs(input)<.2) {
     		input = 0;
     	}
-    	if(Robot.oi.getLeftDrive().getRawButton(1) || Robot.oi.getRightDrive().getRawButton(1)){
-    		input/=2;
+    	if(Robot.oi.getReduceSpeed()){
+    		input*=.7;
     	}
     	return input;
     }

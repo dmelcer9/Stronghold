@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -34,6 +35,10 @@ public class Drive extends Subsystem {
 	
 	public Drive(){
 		super();
+		SmartDashboard.putNumber("P drive", .003);
+		SmartDashboard.putNumber("I drive", .000);
+		SmartDashboard.putNumber("D drive", .000);
+		SmartDashboard.putBoolean("Invert", false);
 		RobotMap.drivePID = new PIDController(.003, 0.0, 0.0, 0.0, gyro, this::outputArcadeRotation, .02);
 		pid = RobotMap.drivePID;
 		pid.setInputRange(-180, 180);
@@ -75,7 +80,9 @@ public class Drive extends Subsystem {
     }
     
     public void setPIDAngle(double angle){
-    	pid.setSetpoint(angle);
+    	pid.setPID(SmartDashboard.getNumber("P drive"),SmartDashboard.getNumber("I drive")/100,SmartDashboard.getNumber("D drive"));
+    	double ivt = SmartDashboard.getBoolean("Invert")?-1:1;
+    	pid.setSetpoint(angle*ivt);
     }
     
     double PIDSpeed = 0;
