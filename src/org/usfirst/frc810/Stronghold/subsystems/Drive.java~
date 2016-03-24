@@ -80,7 +80,7 @@ public class Drive extends Subsystem {
     }
     
     public void setPIDAngle(double angle){
-    	pid.setPID(SmartDashboard.getNumber("P drive"),SmartDashboard.getNumber("I drive"),SmartDashboard.getNumber("D drive"));
+    	pid.setPID(SmartDashboard.getNumber("P drive"),SmartDashboard.getNumber("I drive")/100,SmartDashboard.getNumber("D drive"));
     	double ivt = SmartDashboard.getBoolean("Invert")?-1:1;
     	pid.setSetpoint(angle*ivt);
     }

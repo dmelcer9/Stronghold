@@ -43,7 +43,7 @@ public class TCPClient {
 					reader = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 					System.out.println("Buffered Reader created");
 					output = new DataOutputStream(sock.getOutputStream());
-					;
+					
 					System.out.println("DataOutputStream created");
 					created = true;
 
