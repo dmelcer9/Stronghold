@@ -52,7 +52,7 @@ public class AutonomousCommand extends CommandGroup {
     	addSequential((Command)Robot.autoDefenseChooser.getSelected());
     	Command c = (Command)Robot.autoSideChooser.getSelected();
     	if(!(c instanceof WaitCommand)){
-    		addSequential(new DriveStraight(1,2.5));
+    		//addSequential(new DriveStraight(1,2.5));
     	}
     	addSequential(c);
     	addSequential((Command)Robot.autoShootChooser.getSelected());

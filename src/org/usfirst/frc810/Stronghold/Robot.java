@@ -80,8 +80,8 @@ public class Robot extends IterativeRobot {
         autoSideChooser = new SendableChooser();
         autoShootChooser = new SendableChooser();
         
-        
-        autoDefenseChooser.addDefault("Only move forward", new DriveStraight(1,2));
+        autoDefenseChooser.addDefault("Do not drive forward", new WaitCommand(.01));
+        autoDefenseChooser.addObject("Only move forward", new DriveStraight(1,2));
         autoDefenseChooser.addObject("Go over defense", new DriveStraight(1,5));
        // autoDefenseChooser.addObject("Defense with arm down", new AutoLowBar());
       //  autoDefenseChooser.addObject("Defense with arm up", new AutoGroundDefense());
@@ -90,10 +90,10 @@ public class Robot extends IterativeRobot {
         
         
         autoSideChooser.addDefault("Do not turn", new WaitCommand(.01));
-        autoSideChooser.addObject("Turn Right", new RotateToAngle(90));
-        autoSideChooser.addObject("Turn Left", new RotateToAngle(-90));
+        autoSideChooser.addObject("Turn Right", new RotateToAngle(80));
+        autoSideChooser.addObject("Turn Left", new RotateToAngle(-80));
         
-        SmartDashboard.putData("Auto Side", autoSideChooser);
+        SmartDashboard.putData("Auto Side Selector", autoSideChooser);
         
         
       //  autoShootChooser.addDefault("Aim and shoot", new GoalAssist());
@@ -183,8 +183,8 @@ public class Robot extends IterativeRobot {
        SmartDashboard.putNumber("D", 0);
        SmartDashboard.putNumber("F", 0.01);
        
-       SmartDashboard.putNumber("P drive", 0.003);
-       SmartDashboard.putNumber("I drive", 0.000);
+       SmartDashboard.putNumber("P drive", 0.01);
+       SmartDashboard.putNumber("I drive", 0.001);
        SmartDashboard.putNumber("D drive", 0.000);
        
        

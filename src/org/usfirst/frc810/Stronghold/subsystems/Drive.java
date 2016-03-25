@@ -35,11 +35,11 @@ public class Drive extends Subsystem {
 	
 	public Drive(){
 		super();
-		SmartDashboard.putNumber("P drive", .003);
-		SmartDashboard.putNumber("I drive", .000);
+		SmartDashboard.putNumber("P drive", .01);
+		SmartDashboard.putNumber("I drive", .001);
 		SmartDashboard.putNumber("D drive", .000);
 		SmartDashboard.putBoolean("Invert", false);
-		RobotMap.drivePID = new PIDController(.003, 0.0, 0.0, 0.0, gyro, this::outputArcadeRotation, .02);
+		RobotMap.drivePID = new PIDController(.01, 0.00001, 0.0, 0.0, gyro, this::outputArcadeRotation, .02);
 		pid = RobotMap.drivePID;
 		pid.setInputRange(-180, 180);
         pid.setOutputRange(-1, 1);
@@ -87,6 +87,7 @@ public class Drive extends Subsystem {
     
     double PIDSpeed = 0;
     public void outputArcadeRotation(double rotVal){
+    	SmartDashboard.putNumber("PID out", rotVal);
     	arcadeDrive(PIDSpeed, -rotVal);
     }
     
