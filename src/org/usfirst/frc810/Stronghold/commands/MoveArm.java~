@@ -12,6 +12,7 @@
 package org.usfirst.frc810.Stronghold.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc810.Stronghold.subsystems.*;
 import org.usfirst.frc810.Stronghold.Robot;
 
 /**
@@ -40,8 +41,10 @@ public class MoveArm extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(Arm.exists){
     	Robot.arm.enable();
     	Robot.arm.setSetpoint(Robot.arm.angleToVoltage(m_Angle));
+    	}
     	
     }
 
@@ -51,7 +54,12 @@ public class MoveArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.onTarget();
+    	if(Arm.exists){
+    		return Robot.arm.onTarget();
+    	} else{
+    		return true;
+    	}
+        
     }
 
     // Called once after isFinished returns true
