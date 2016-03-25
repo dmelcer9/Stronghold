@@ -82,7 +82,8 @@ public class Robot extends IterativeRobot {
         
         autoDefenseChooser.addDefault("Do not drive forward", new WaitCommand(.01));
         autoDefenseChooser.addObject("Only move forward", new DriveStraight(1,2));
-        autoDefenseChooser.addObject("Go over defense", new DriveStraight(1,5));
+        autoDefenseChooser.addObject("Go over defense", new DriveStraight(1,4));
+        autoDefenseChooser.addObject("Low bar", new DriveStraight(.8, 5));
        // autoDefenseChooser.addObject("Defense with arm down", new AutoLowBar());
       //  autoDefenseChooser.addObject("Defense with arm up", new AutoGroundDefense());
         

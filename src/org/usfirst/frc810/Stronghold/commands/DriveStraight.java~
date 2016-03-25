@@ -48,6 +48,7 @@ public class DriveStraight extends Command {
     	
     	Robot.drive.setSpeedForArcadePID(m_Speed);
     	double currentAngle = RobotMap.driveGyro.getAngle();
+    	if(currentAngle > 180) currentAngle -= 360;
     	Robot.drive.setPIDAngle(currentAngle);
     	Robot.drive.enablePIDRotation();
     
