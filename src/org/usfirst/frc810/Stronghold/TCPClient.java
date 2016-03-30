@@ -6,6 +6,8 @@ import java.util.concurrent.*;
 
 public class TCPClient {
 
+	private final String[] sendArr = { "0", "0", "0", "255", "255", "255"};
+	
 	private final String pingMessage = "A\n";
 	private final int timeOut = 250;// ms
 
@@ -45,6 +47,10 @@ public class TCPClient {
 					output = new DataOutputStream(sock.getOutputStream());
 					
 					System.out.println("DataOutputStream created");
+					
+					for(String s:sendArr){
+						output.writeUTF(s+"\n");
+					}
 					created = true;
 
 				} catch (Exception e) {

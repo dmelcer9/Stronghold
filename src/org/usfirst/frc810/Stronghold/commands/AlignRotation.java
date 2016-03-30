@@ -71,7 +71,7 @@ public class AlignRotation extends Command {
     		if(setAngle < -180) setAngle += 360;
     		else if(setAngle > 180) setAngle -= 360;
     		Robot.drive.setPIDAngle(setAngle);
-    		Robot.drive.enablePIDRotation();
+    		//Robot.drive.enablePIDRotation();
     		set = true;
     	}
     	
