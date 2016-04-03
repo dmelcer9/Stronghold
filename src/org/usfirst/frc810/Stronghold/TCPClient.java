@@ -6,9 +6,12 @@ import java.util.concurrent.*;
 
 public class TCPClient {
 
+	//private final String[] sendArr = { "m", "0", "0", "0", "255", "255", "255"}; //Competition
+	//private final String[] sendArr = { "c" }; //Calibration
 	private final String[] sendArr = { "0", "0", "0", "255", "255", "255"};
 	
-	private final String pingMessage = "A\n";
+	private final String pingMessage = "G\n";
+	private final String calibMessage = "C\n";
 	private final int timeOut = 250;// ms
 
 	private ScheduledThreadPoolExecutor tcpPool = new ScheduledThreadPoolExecutor(5); 
@@ -75,6 +78,15 @@ public class TCPClient {
 			}
 
 		return tcpPool.submit(() -> Double.NaN);
+	}
+	
+	public void sendCalibMessage(){
+		
+		if(worker.isDone()) new Thread(()->{try {
+			worker.get().outputCommand(calibMessage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}}).start();
 	}
 
 	public class AngleCorrectionTask implements Callable<Double> {
